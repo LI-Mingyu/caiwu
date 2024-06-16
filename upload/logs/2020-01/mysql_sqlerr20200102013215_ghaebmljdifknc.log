@@ -1,0 +1,17 @@
+[ERROR SQL]
+insert into `xinhu_log` set `type`='错误SQL',`ip`='113.118.37.244',`web`='Chrome',`optdt`='2020-01-02 01:32:15',`optid`='1',`optname`='管理员',`remark`='mysqliError:Table &#39;yibenzhang_cicsc.xinhu_admin&#39; doesn&#39;t exist',`url`='upload/logs/2020-01/mysql_sqlerr20200102013215_ckmaigldnfjhbe.log',`level`='2'
+
+[Reason]
+mysqliError:Table 'yibenzhang_cicsc.xinhu_log' doesn't exist
+
+[URL]
+http://yibenzhang.cicscm.com/
+
+[IP]
+113.118.37.244
+
+[datetime]
+2020-01-02 01:32:15
+
+[Browser]
+Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36

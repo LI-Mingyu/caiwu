@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="icon" href="/favicon.ico">
+    <title>一本账科技</title>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.1/lib/index.css">
+    <!-- 引入组件 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vant@2.1/lib/vant.min.js"></script>
+
+    <!--  axios  -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.bootcss.com/qs/6.5.1/qs.min.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <div style="text-align: center;margin-top: 30px;margin-bottom: 30px">
+            <img src="/images/logo.png" style="text-align: center;height: 50px">
+        </div>
+
+        <div class="registry-wrap">
+            <van-cell-group>
+
+                <van-field v-model="registryForm.username" required clearable label="用户名" placeholder="请输入用户名">
+                </van-field>
+                <van-field v-model="registryForm.password" required clearable type="password" label="密码"
+                    placeholder="请输入密码">
+                </van-field>
+                <van-field v-model="registryForm.confirmPassword" required clearable type="password" label="确认密码"
+                    placeholder="请确认确认密码">
+                </van-field>
+                <van-field v-model="registryForm.realName" required clearable label="真实姓名" placeholder="请输入真实姓名">
+                </van-field>
+                <van-field v-model="registryForm.companyName" required clearable label="公司名称" placeholder="请输入公司名称">
+                </van-field>
+                <van-field v-model="registryForm.city" required clearable label="地址" placeholder="请输入地址">
+                </van-field>
+                <van-field v-model="registryForm.mobile" required clearable type="number" maxlength="11" label="联系电话"
+                    placeholder="11位手机号">
+                    <template #button>
+                        <van-button size="small" type="info" :disabled="disabled" @click="sendCodeMsg">{{sendcode}}
+                        </van-button>
+                    </template>
+                </van-field>
+                <van-field v-model="registryForm.verificationCode" required clearable type="number" maxlength="6"
+                    label="验证码" placeholder="验证码">
+                </van-field>
+                <span style="font-size: 12px;padding: 0px 15px">
+                    已阅读并同意
+                    <a href="/new/UserAgreement.html">《一本账用户协议》</a>
+                    和
+                    <a href="/new/PrivacyPolicy.html">《一本账客户隐私》</a>
+                </span>
+            </van-cell-group>
+
+            <div style="padding: 20px;">
+                <van-button block type="info" size="normal" :disabled="loading" :loading="loading"
+                    loading-text="正在注册中..." @click="submit">
+                    同意协议并注册
+                </van-button>
+            </div>
+            
+        </div>
+        <div class="footer">
+            客服电话 <span style="color: blue;">400-845-8455</span>
+        </div>
+    </div>
+</body>
+<script>
+    const api = "https://ybz.ecouponsx.com"
+    new Vue({
+        el: '#app',
+        data: {
+            loading: false,
+            sendcode: '发送验证码',
+            disabled: false,
+            registryForm: {
+                companyName: '',
+                username: '',
+                password: '',
+                confirmPassword: '',
+                city: '',
+                realName: '',
+                mobile: '',
+                verificationCode: '',
+                openId: ""
+                // companyName: 'test-c4',
+                // username: 'test-u4',
+                // password: '123321',
+                // confirmPassword: '123321',
+                // // city: 'sz',
+                // realName: 'lxc',
+                // mobile: '17620341178',
+                // verificationCode: '',
+                // openId: ""
+            }
+        },
+
+        methods: {
+            submit() {
+                if (!this.fromValidate()) return;
+                this.loading = true;
+                axios.post(api + '/admin/register', this.registryForm, { header: { 'Content-Type': 'application/json' } }).then(res => {
+                    this.loading = false;
+                    console.log(res);
+                    if (res.status == 200 && res.data.code == '000000') {
+                        this.$toast.success('注册成功\n正在跳转到登入页面...', duration = 2000);
+                        this.goBack();
+                    } else {
+                        this.$toast.fail(res.data.msg);
+                    }
+                }).catch(err => {
+                    this.loading = false;
+                    console.log(err);
+                    this.$toast.fail('注册失败,系统异常');
+                })
+            },
+            fromValidate() {
+                if (this.registryForm.companyName == '') {
+                    this.$toast.fail('请输入公司名称');
+                } else if (this.registryForm.username == '') {
+                    this.$toast.fail('请输入用户名');
+                } else if (this.registryForm.password == '') {
+                    this.$toast.fail('请输入密码');
+                } else if (this.registryForm.confirmPassword == '' || this.registryForm.confirmPassword != this.registryForm.password) {
+                    this.$toast.fail('两次密码输入不一致');
+                } else if (this.registryForm.city == '') {
+                    this.$toast.fail('请输入地址');
+                } else if (this.registryForm.realName == '') {
+                    this.$toast.fail('请输入真实姓名');
+                } else if (this.registryForm.mobile == '') {
+                    this.$toast.fail('请输入手机号');
+                } else if (this.registryForm.verificationCode == '') {
+                    this.$toast.fail('请输入短信验证码');
+                } else {
+                    return true;
+                }
+                return false;
+            },
+            //发送验证码
+            sendCodeMsg() {
+                let _this = this;
+                if (_this.judgePhone()) {
+                    var num = 60;
+                    var timer = setInterval(function () {
+                        num--;
+                        _this.disabled = true;
+                        _this.sendcode = num + '秒后重新获取';
+                        if (num === 0) {
+                            _this.sendcode = '获取验证码';
+                            _this.disabled = false;
+                            clearInterval(timer)
+                        }
+                    }, 1000)
+                    axios.get(api + "/admin/sendSms?type=1&phoneNumber=" + _this.registryForm.mobile).then((res) => {
+                        let data = res.data;
+                        console.log(data)
+                        console.log(res.status)
+                        if (res.status === 200 && data.code == "000000" && data.data === '') {
+                            console.log(data.data)
+                            _this.$toast.success('发送成功')
+                        } else {
+                            num = 1;
+                            _this.$toast.fail(data.data)
+                        }
+                    }).catch(err => {
+                        num = 1;
+                        console.log(err);
+                        _this.$toast.fail('系统异常');
+                    })
+                }
+
+            },
+            //手机号正则判断
+            judgePhone() {
+                const reg = /^1[3456789]\d{9}$/;
+                if (this.registryForm.mobile == '') {
+                    this.$toast.fail("请输入手机号码")
+                    return false;
+                } else if (!reg.test(this.registryForm.mobile)) {
+                    this.$toast.fail("手机号格式不正确")
+                    return false;
+                } else {
+                    return true;
+                }
+            },
+            goBack() {
+                window.history.back();
+            },
+        },
+
+        created() {
+
+        },
+
+    })
+
+</script>
+<style>
+    @media screen and (max-width: 320px) {
+        html {
+            font-size: 32px;
+        }
+
+        body {
+            min-width: 320px;
+        }
+    }
+
+    @media screen and (min-width: 800px) {
+        .registry-wrap {
+            width: 500px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+        }
+    }
+    .footer {
+        width: 100%;
+        font-size: 14px;
+        position: absolute;
+        bottom: 0px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+</style>
+
+</html>

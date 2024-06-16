@@ -1,0 +1,17 @@
+[ERROR SQL]
+SELECT id as value,acc_name as name,id FROM xinhu_account WHERE ((`acc_name` like '%%') or (`id`=0) ) ORDER BY `name`
+
+[Reason]
+mysqliError:Table 'yibenzhang.xinhu_account' doesn't exist
+
+[URL]
+http://127.0.0.3/?a=lu&m=input&d=flow&num=custfina&mid=0&callback=opegs1576055751916_2984
+
+[IP]
+127.0.0.1
+
+[datetime]
+2019-12-11 17:23:24
+
+[Browser]
+Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.90 Safari/537.36

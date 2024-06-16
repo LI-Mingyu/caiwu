@@ -1,0 +1,33 @@
+[ERROR SQL]
+select  ( select   IFNULL(sum(money),0) from xinhu_custfinaa  where paytype=0 and type=0 and htid in () ) - ( select  IFNULL(sum(money),0) from xinhu_custfinaa  where  paytype=0 and type=1   and htid in () ) as dzjer
+
+[Reason]
+mysqliError:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') ) - ( select  IFNULL(sum(money),0) from xinhu_custfinaa  where  paytype=0 and ' at line 1
+
+[URL]
+http://zhongshui.cicscm.com/index.php?a=publicstore&m=mode_custract|input&d=flow&modeid=35&ajaxbool=true&rnd=727498&pnum=
+
+[POST]
+[tablename_abc]:ys0ki0yh0iff0ijj0ef0ec0ijc0ys0ki0yi0ky014
+[defaultorder]:
+[keywhere]:
+[where]:
+[sort]:
+[dir]:
+[loadci]:4
+[storebeforeaction]:storebeforeshow
+[storeafteraction]:storeaftershow
+[modenum]:custract
+[start]:0
+[page]:1
+[limit]:15
+[atype]:type
+
+[IP]
+113.118.37.64
+
+[datetime]
+2020-04-29 01:42:44
+
+[Browser]
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36

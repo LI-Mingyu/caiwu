@@ -1,0 +1,17 @@
+[ERROR SQL]
+update `xinhu_logintoken` set `online`=0 where `token`='tpvxd39s'
+
+[Reason]
+mysqliError:Table 'yibenzhang_cicsc.xinhu_logintoken' doesn't exist
+
+[URL]
+http://yibenzhang.cicscm.com/?m=login&a=exit
+
+[IP]
+113.118.37.244
+
+[datetime]
+2020-01-02 01:32:17
+
+[Browser]
+Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36

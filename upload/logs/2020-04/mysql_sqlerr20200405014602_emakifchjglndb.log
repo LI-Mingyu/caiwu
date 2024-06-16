@@ -1,0 +1,33 @@
+[ERROR SQL]
+select a.id,a.name,a.deptname,a.ranking,a.state,a.tel,a.sex,a.mobile,a.workdate,a.jiguan,a.minzu,a.xueli,a.email,a.syenddt,a.quitdt,a.positivedt,a.birtype,a.birthday,a.num,b.name as companyid from `xinhu_userinfo` a left join `xinhu_company` b on a.companyid=b.id where 1=1    and a.`id`='1' and (a.1=1 or instr(concat(',', a.`dwid`, ','), ',1,')>0)      order by a.id
+
+[Reason]
+mysqliError:Unknown column 'a.1' in 'where clause'
+
+[URL]
+http://dl.ybz58.com/index.php?a=publicstore&m=index&d=&ajaxbool=true&rnd=414855
+
+[POST]
+[tablename_abc]:vtt0hh0kh0vth0ee0vte0vth0vvk0et0vte0uc0uh012
+[defaultorder]:
+[keywhere]:
+[where]:
+[sort]:
+[dir]:
+[loadci]:1
+[storebeforeaction]:
+[storeafteraction]:
+[modenum]:userinfo
+[start]:0
+[page]:1
+[limit]:0
+[atype]:my
+
+[IP]
+14.120.77.40
+
+[datetime]
+2020-04-05 01:46:02
+
+[Browser]
+Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36

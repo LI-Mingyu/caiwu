@@ -1,0 +1,8 @@
+[2019-12-11 15:16:27]:http://127.0.0.3/index.php?a=shengjianss&m=upgrade&d=system&ajaxbool=true&rnd=732952
+CREATE TABLE `xinhu_wxqy_dept` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(30) DEFAULT NULL,
+  `parentid` int(11) DEFAULT NULL,
+  `order` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8

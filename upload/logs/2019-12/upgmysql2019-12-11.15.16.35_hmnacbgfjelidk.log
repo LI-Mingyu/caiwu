@@ -1,0 +1,14 @@
+[2019-12-11 15:16:35]:http://127.0.0.3/index.php?a=shengjianss&m=upgrade&d=system&ajaxbool=true&rnd=138186
+CREATE TABLE `xinhu_finount` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `comid` smallint(6) DEFAULT '0' COMMENT '对应单位id',
+  `name` varchar(50) DEFAULT NULL COMMENT '名称',
+  `bankname` varchar(50) DEFAULT NULL COMMENT '开户行',
+  `banknum` varchar(30) DEFAULT NULL COMMENT '帐号',
+  `bankming` varchar(50) DEFAULT NULL COMMENT '开户名',
+  `sort` int(11) DEFAULT '0' COMMENT '排序号',
+  `money` decimal(12,2) DEFAULT '0.00' COMMENT '剩余金额',
+  `opendt` date DEFAULT NULL COMMENT '开户日期',
+  `status` tinyint(1) DEFAULT '1' COMMENT '状态',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8

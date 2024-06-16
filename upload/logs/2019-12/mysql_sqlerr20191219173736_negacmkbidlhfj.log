@@ -1,0 +1,17 @@
+[ERROR SQL]
+insert into `xinhu_log` set `type`='错误SQL',`ip`='127.0.0.1',`web`='Chrome',`optdt`='2019-12-19 17:37:36',`optid`='1',`optname`='管理员',`remark`='mysqliError:Table &#39;yibenzhang.xinhu_admin&#39; doesn&#39;t exist',`url`='upload/logs/2019-12/mysql_sqlerr20191219173736_alkjhbcnigedmf.log',`level`='2'
+
+[Reason]
+mysqliError:Table 'yibenzhang.xinhu_log' doesn't exist
+
+[URL]
+http://127.0.0.3/index.php?a=gettotal&m=index&d=home&atype=&loadci=8&optdt=2019-12-19%2017:34:15&nums=kjrk,apply,kjrko,gong,syslog,meet&ajaxbool=true&rnd=558312
+
+[IP]
+127.0.0.1
+
+[datetime]
+2019-12-19 17:37:36
+
+[Browser]
+Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.90 Safari/537.36

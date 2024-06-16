@@ -1,0 +1,36 @@
+[ERROR SQL]
+select IFNULL(sum(money),0) as yishou from xinhu_custfina  where  type=0 and ispay=1  and htid in ()
+
+[Reason]
+mysqliError:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+
+[URL]
+http://zhongshui.cicscm.com/index.php?a=publicstore&m=mode_pay_custract|input&d=flow&modeid=105&ajaxbool=true&rnd=847208&pnum=
+
+[POST]
+[tablename_abc]:hh0ct0ca0fj0kk0fa0ck0ih0hh0ft0kv0tvt0kh0kc0ck0ik011
+[defaultorder]:
+[keywhere]:
+[where]:
+[sort]:
+[dir]:
+[loadci]:7
+[storebeforeaction]:storebeforeshow
+[storeafteraction]:storeaftershow
+[modenum]:pay_custract
+[start]:0
+[page]:1
+[limit]:15
+[atype]:pay_wfzd
+[key]:
+[keystatus]:
+[search_value]:
+
+[IP]
+113.91.188.34
+
+[datetime]
+2020-05-05 11:31:14
+
+[Browser]
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36

@@ -1,0 +1,33 @@
+[ERROR SQL]
+SELECT count(1) FROM xinhu_custract WHERE 1=1    and `uid`=(  ) and `comid` in(92)
+
+[Reason]
+mysqliError:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') and `comid` in(92)' at line 1
+
+[URL]
+http://zhongshui.cicscm.com/index.php?a=publicstore&m=mode_custract|input&d=flow&modeid=35&ajaxbool=true&rnd=217993&pnum=
+
+[POST]
+[tablename_abc]:ey0cj0ek0jii0jvv0hi0hu0jvu0ey0cj0ej0ce013
+[defaultorder]:
+[keywhere]:
+[where]:
+[sort]:
+[dir]:
+[loadci]:2
+[storebeforeaction]:storebeforeshow
+[storeafteraction]:storeaftershow
+[modenum]:custract
+[start]:0
+[page]:1
+[limit]:15
+[atype]:wfzd
+
+[IP]
+113.118.39.67
+
+[datetime]
+2020-05-01 22:49:13
+
+[Browser]
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Safari/605.1.15

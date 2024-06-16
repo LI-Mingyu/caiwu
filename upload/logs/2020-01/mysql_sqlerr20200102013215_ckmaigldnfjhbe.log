@@ -1,0 +1,17 @@
+[ERROR SQL]
+SELECT `face`,`id`,`name`,`ranking`,`deptname`,`deptallname`,`type`,`style`,`user` FROM xinhu_admin WHERE `id`='1' and `status`=1 LIMIT 1
+
+[Reason]
+mysqliError:Table 'yibenzhang_cicsc.xinhu_admin' doesn't exist
+
+[URL]
+http://yibenzhang.cicscm.com/
+
+[IP]
+113.118.37.244
+
+[datetime]
+2020-01-02 01:32:15
+
+[Browser]
+Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36

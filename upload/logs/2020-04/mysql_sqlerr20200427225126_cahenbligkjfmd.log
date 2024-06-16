@@ -1,0 +1,33 @@
+[ERROR SQL]
+select IFNULL(sum(money),0) as kaipiao  from xinhu_fininfom where num in ()
+
+[Reason]
+mysqliError:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+
+[URL]
+http://zhongshui.cicscm.com/index.php?a=publicstore&m=mode_custract|input&d=flow&modeid=35&ajaxbool=true&rnd=508621&pnum=
+
+[POST]
+[tablename_abc]:ys0ki0yh0iff0ijj0ef0ec0ijc0ys0ki0yi0ky014
+[defaultorder]:
+[keywhere]:
+[where]:
+[sort]:
+[dir]:
+[loadci]:9
+[storebeforeaction]:storebeforeshow
+[storeafteraction]:storeaftershow
+[modenum]:custract
+[start]:0
+[page]:1
+[limit]:15
+[atype]:type
+
+[IP]
+14.20.89.110
+
+[datetime]
+2020-04-27 22:51:26
+
+[Browser]
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36

@@ -1,0 +1,140 @@
+	 
+		  // 营业额
+		 $sql="select ifnull(sum(money),0) as htjer from xinhu_custract c where 1=1 and c.comid='". $_SESSION['xinhu_companyid']."' ";	 
+		 $sqqt="select id from xinhu_custract c where 1=1 and c.comid='". $_SESSION['xinhu_companyid']."' ";	 
+		 $tosql="select count(id)  from xinhu_custract c where 1=1 and c.comid='". $_SESSION['xinhu_companyid']."'  ";	  
+		 
+		 if(isset($start_day) && $start_day!="" && $end_day==""  )
+		 {	
+			$sql.=" and DATE_FORMAT(c.signdt,\"%Y-%m-%d\") >='$start_day' ";
+			 $sqqt.=" and DATE_FORMAT(c.signdt,\"%Y-%m-%d\") >='$start_day' ";
+		     $tosql.=" and DATE_FORMAT(c.signdt,\"%Y-%m-%d\") >='$start_day' ";
+		 }	
+			 
+		  if( $start_day!="" && $end_day!=""  )
+		 {	
+			$sql.=" and DATE_FORMAT(c.signdt,\"%Y-%m-%d\") >='$start_day' and DATE_FORMAT(c.signdt,\"%Y-%m-%d\")<='$end_day' ";
+			  $sqqt.=" and DATE_FORMAT(c.signdt,\"%Y-%m-%d\") >='$start_day' and DATE_FORMAT(c.signdt,\"%Y-%m-%d\")<='$end_day' ";
+		     $tosql.=" and DATE_FORMAT(c.signdt,\"%Y-%m-%d\") >='$start_day' and DATE_FORMAT(c.signdt,\"%Y-%m-%d\") <='$end_day' ";
+		 }	 
+			 	
+		 
+		 //exit($sql);	 
+			 
+		 $res=mysql_query($sql);
+		 $arr=mysql_fetch_array($res);
+
+		 $htjer=$arr[0];
+		
+		 	 
+
+
+
+		// 调账:
+			 
+		$whe="";	 
+		
+		if(isset($start_day) && $start_day!="" && $end_day==""  )
+		 {	
+			$whe=" and DATE_FORMAT(c.paydt,\"%Y-%m-%d\") >='$start_day' ";
+		     
+		 }
+			 
+		 if( $start_day!="" && $end_day!=""  )
+		 {	
+			$whe=" and DATE_FORMAT(c.paydt,\"%Y-%m-%d\") >='$start_day' and DATE_FORMAT(c.paydt,\"%Y-%m-%d\")<='$end_day' ";
+		     
+		 }		 
+			 
+
+		$sql="select 
+		(select   IFNULL(sum(money),0)  from xinhu_custfinaa c where c.paytype=0 and c.type=0  $whe     )
+		- 
+		( select   IFNULL(sum(money),0)  from xinhu_custfinaa c where c.paytype=0 and c.type=1 $whe )  as dzje"; 
+		
+		
+			 
+		$res=mysql_query($sql);
+		$arr=mysql_fetch_array($res);
+		$dzje=$arr[0];
+			 
+			 
+
+		 // 其他收入
+
+		 $sql="select IFNULL(sum(money),0) as qtsr  from xinhu_custfina c where 1=1 $whe and c.paytype=3 and c.ispay=1  and c.type=0  and c.comid='". $_SESSION['xinhu_companyid']."'";  // exit($sql);
+		 $res=mysql_query($sql);
+		 $arr=mysql_fetch_array($res);	
+		 $qtsr=$arr[0];	
+
+			 
+			 
+
+		 //采购支出
+		 $sql="select IFNULL(sum(money),0) from  xinhu_custfina c where 1=1 $whe and type=1 and ispay=1 and paytype=1 and comid='". $_SESSION['xinhu_companyid']."'";  // exit($sql);
+		 $res=mysql_query($sql);
+		 $arr=mysql_fetch_array($res);
+		 $ckzc=$arr[0];
+
+
+		 // 外协支出
+		 $sql="select IFNULL(sum(money),0) from  xinhu_custfina c where 1=1 $whe  and type=1 and ispay=1 and paytype=2 and comid='". $_SESSION['xinhu_companyid']."'";  //exit($sql);
+		 $res=mysql_query($sql);
+		 $arr=mysql_fetch_array($res);
+		 $wxzc=$arr[0];
+
+
+
+
+		 // 采购调账:0.00
+
+	$sql="select ( (select IFNULL(sum(money),0) from  xinhu_custfinaa c where  1=1 $whe and paytype=1 and type=0 and comid='".$_SESSION['xinhu_companyid']."'  ) 
+	- (select IFNULL(sum(money),0) from  xinhu_custfinaa c where  1=1 $whe  and  paytype=1 and type=1 and comid='".$_SESSION['xinhu_companyid']."' )  )  as  cgtz ";   // exit($sql);
+			 
+		 $res=mysql_query($sql);
+		 $arr=mysql_fetch_array($res);
+		$cgtz=$arr[0];
+
+
+
+		// 外协调账:0.00
+
+	$sql="select ( (select IFNULL(sum(money),0) from  xinhu_custfinaa c where 1=1 $whe  and paytype=2 and type=0 and comid='".$_SESSION['xinhu_companyid']."'  ) 
+	- (select IFNULL(sum(money),0) from  xinhu_custfinaa  c where  1=1 $whe  and paytype=2 and type=1 and comid='".$_SESSION['xinhu_companyid']."' )  )  as  wxtz "; 	 		 
+			 
+		$res=mysql_query($sql);
+		$arr=mysql_fetch_array($res);
+		$wxtz=$arr[0];
+
+
+
+		// 其他支出费用 :0.00
+
+		$sql="select IFNULL(sum(money),0) from  xinhu_custfee c where  1=1  and htid in ($sqqt) ";
+		$res=mysql_query($sql);
+		$arr=mysql_fetch_array($res);
+		$qtzc=$arr[0];
+
+
+
+		// 收入小计= 合同金额 + 调账金额 + 其他收入
+		$srxj =$htjer+$dzje+$qtsr;
+
+
+		// 支出小计= 其他支出 + 采购支出  +  外协支出 + 采购调账 + 外协调账
+		$zcxj =$qtzc+ $ckzc+ $wxzc + $cgtz + $wxtz;
+
+		
+		// 利润	 
+		$lrun=$srxj-$zcxj;
+
+		 //print_r($res);exit;
+		
+		$feelv=0;	 
+		if($srxj!=0){	 
+		$feelv=$lrun/$srxj;
+		$feelv=substr($feelv,0,4); 
+		$feelv*=100;	
+		}
+	    
+			 

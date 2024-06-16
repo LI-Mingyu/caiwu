@@ -1,0 +1,33 @@
+[ERROR SQL]
+SELECT `id`,`num`,`name` FROM xinhu_flow_where WHERE `status`=1 and `setid`=7 and `num` is not null and `islb`=1 and () and ifnull(`pnum`,'')='' ORDER BY `sort`
+
+[Reason]
+mysqliError:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') and ifnull(`pnum`,'')='' ORDER BY `sort`' at line 1
+
+[URL]
+https://sz.ybz58.com/index.php?a=publicstore&m=mode_customer|input&d=flow&modeid=7&ajaxbool=true&rnd=367694&pnum=
+
+[POST]
+[tablename_abc]:vj0pm0va0moo0mgg0tm0pt0mma0jg0vv0td0pv05
+[defaultorder]:
+[keywhere]:
+[where]:
+[sort]:
+[dir]:
+[loadci]:1
+[storebeforeaction]:storebeforeshow
+[storeafteraction]:storeaftershow
+[modenum]:customer
+[start]:0
+[page]:1
+[limit]:15
+[atype]:my
+
+[IP]
+113.91.37.104
+
+[datetime]
+2020-06-24 16:48:17
+
+[Browser]
+Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3766.400 QQBrowser/10.6.4163.400

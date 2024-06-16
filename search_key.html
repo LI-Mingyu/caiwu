@@ -1,0 +1,560 @@
+
+Array ( 
+
+[a] => publicstore 
+
+[m] => mode_custract|input 
+
+[d] => flow 
+
+[modeid] => 35 
+
+[ajaxbool] => true [rnd] => 469124 [pnum] => [tablename_abc] => pa0ow0pd0wbb0wrr0zb0zm0wrm0pa0ow0pw0op02 [defaultorder] => [keywhere] => [where] => [sort] => [dir] => [loadci] => 2 
+
+[storebeforeaction] => storebeforeshow [storeafteraction] => storeaftershow [modenum] => custract [start] => 0 [page] => 1 [limit] => 15 
+
+
+[atype] => my 
+
+
+
+[soufields_signdt_start] => 
+[soufields_signdt_end] => 
+[soufields_num] => 
+[soufields_custname] => 
+[soufields_content] => 
+[soufields_startdt_start] => 
+[soufields_startdt_end] => 
+[soufields_moneys] => 
+[soufields_manager] => 
+[soufields_createname] => 小李 
+[key] => 
+[search_value] => 
+
+
+)
+
+
+
+Array ( [a] => publicstore [m] => mode_custract|input [d] => flow [modeid] => 35 [ajaxbool] => true [rnd] => 469124 [pnum] => [tablename_abc] => pa0ow0pd0wbb0wrr0zb0zm0wrm0pa0ow0pw0op02 [defaultorder] => [keywhere] => [where] => [sort] => [dir] => [loadci] => 3 [storebeforeaction] => storebeforeshow [storeafteraction] => storeaftershow [modenum] => custract [start] => 0 [page] => 1 [limit] => 15 [atype] => my
+
+
+[soufields_signdt_start] => 2019-12-26 
+[soufields_signdt_end] => 2019-12-28 
+
+[soufields_num] => [soufields_custname] => [soufields_content] => [soufields_startdt_start] => [soufields_startdt_end] => [soufields_moneys] => [soufields_manager] => [soufields_createname] => 小李 [key] => [search_value] => ) wtf
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+		$soufields_signdt_start="";
+		$soufields_signdt_end="";
+		
+		$soufields_num="";
+		$soufields_custname="";
+		$soufields_content="";
+		
+		$soufields_startdt_start="";
+		$soufields_startdt_end="";
+		
+		
+		$soufields_moneys="";
+		$soufields_manager="";
+		$soufields_createname="";
+		
+		$_key="";
+		
+		
+		if(isset($_REQUEST['soufields_signdt_start']))		
+		  $soufields_signdt_start= $_REQUEST['soufields_signdt_start'];
+		
+		if(isset($_REQUEST['soufields_signdt_end']))	
+		 $soufields_signdt_end=$_REQUEST['soufields_signdt_end'];  
+		
+		if(isset($_REQUEST['soufields_num']))
+		  $soufields_num=$_REQUEST['soufields_num'];  
+		
+		if(isset($_REQUEST['soufields_custname']))
+		 $soufields_custname=$_REQUEST['soufields_custname']; 
+		
+		if(isset($_REQUEST['soufields_content']))
+		 $soufields_content=$_REQUEST['soufields_content'];  
+		
+		if(isset($_REQUEST['soufields_startdt_start']))
+		  $soufields_startdt_start=$_REQUEST['soufields_startdt_start'];  
+		
+		if(isset($_REQUEST['soufields_startdt_end']))
+		  $soufields_startdt_end=$_REQUEST['soufields_startdt_end'];   
+		
+		if(isset($_REQUEST['soufields_moneys']))
+		  $soufields_moneys=$_REQUEST['soufields_moneys'];  		
+		
+		if(isset($_REQUEST['soufields_manager']))
+		  $soufields_manager=$_REQUEST['soufields_manager'];   
+		
+		if(isset($_REQUEST['soufields_createname']))
+		  $soufields_createname=$_REQUEST['soufields_createname']; 
+		
+		if(isset($_REQUEST['key']))
+		  $_key=$_REQUEST['key']; 
+		 
+
+
+
+
+
+/*
+			$carr['soufields_signdt_start']=$soufields_signdt_start;
+			$carr['soufields_signdt_end']=$soufields_signdt_end;
+			
+			$carr['soufields_num']=$soufields_num;
+			$carr['soufields_custname']=$soufields_custname;
+			$carr['soufields_content']=$soufields_content;
+			
+			$carr['$soufields_startdt_start']=$soufields_startdt_start;
+			$carr['soufields_startdt_end']=$soufields_startdt_end;
+			
+			$carr['soufields_moneys']=$soufields_moneys;
+			$carr['soufields_manager']=$soufields_manager;
+			$carr['soufields_createname']=$soufields_createname;  
+			
+			$carr['key']=$_key; */
+			 
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//替换屌总计  by andy.ma 2019/12/23
+		
+		// 合同数量：25   合同合计：2458910元   调账：0元   已收：335880元   回款率：13.66%   开票：496994元   未收：2123030元   未开：1961916元
+		
+	 //  print_r($rs);exit('wtf');
+		
+		if(isset($rs['zongji']) && $rs['zongji']==1)
+		 {
+			//print_r($_POST);exit();
+			
+			$rs['fpid']="汇总";
+		 
+			$rs['type']="";
+			$rs['startdt']="";
+			$rs['enddt']="";
+			$rs['isover']="";
+			
+			$rs['ispay']="";			 
+			$rs['statetext']="";
+			
+			
+			
+			
+			$where="";
+			
+			$sqstr="select id from xinhu_custract where 1=1  and  comid='".$_SESSION['xinhu_companyid']."'";
+			
+			
+			if(!empty($soufields_signdt_start) && empty($soufields_signdt_end) )
+			{
+				$sqstr.="  and applydt>='".$soufields_signdt_start."'";
+			
+			}
+			
+			
+			if(!empty($soufields_signdt_start) && !empty($soufields_signdt_end) )
+			{
+				$sqstr.="  and applydt>='".$soufields_signdt_start."' and applydt<='$soufields_signdt_end'";			
+			}
+			
+			
+			if(!empty($soufields_num))
+			{
+				$sqstr.=" and num like '%$soufields_num%'";
+				
+			}
+			
+			
+			if(!empty($soufields_custname))
+			{
+				$sqstr.=" and custname like '%$soufields_custname%'";
+				
+			}
+			
+			
+			if(!empty($soufields_content))
+			{
+				$sqstr.=" and soufields_content like '%$soufields_content%'";
+				
+			}
+			
+			
+			if(!empty($soufields_moneys))
+			{
+				$sqstr.=" and moneys like '%soufields_moneys%'";
+				
+			}
+			
+			
+			
+			
+			if(!empty($soufields_manager))
+			{
+				
+				$sqstr.=" and manager like '%$soufields_manager%'";
+			}
+			
+			
+			
+			if(!empty($soufields_startdt_start) && empty($soufields_startdt_end) )
+			{
+				$sqstr.="  and startdt>='".$soufields_startdt_start."'";
+			
+			}
+			
+			
+			if(!empty($soufields_startdt_start) && !empty($soufields_startdt_end) )
+			{
+				$sqstr.="  and startdt>='".$soufields_startdt_start."'  and startdt<='".$soufields_startdt_end."'";
+			
+			}
+			
+			
+			
+			
+			 
+			
+			
+			
+			
+			
+			// 签订起始日期
+			if(!empty($rs['soufields_signdt_start']) && empty($rs['soufields_signdt_end']) )
+			{
+				$sqstr.="  and applydt>='".$rs['soufields_signdt_start']."'";
+			
+			}
+			
+			
+			if(!empty($rs['soufields_signdt_start']) && !empty($rs['soufields_signdt_end']) )
+			{	
+			   $sqstr.="  and applydt>='".$rs['soufields_signdt_start']."' and applydt<='".$rs['soufields_signdt_end']."'";
+			}
+			
+			
+			if(!empty($rs['soufields_num']))
+			{
+				 $sqstr.=" and num like '%".$rs['soufields_num']."%' ";
+				
+			}
+			
+			//exit($sqstr);
+			
+			
+			file_put_contents("sqstr.txt",$sqstr);
+			
+			
+			 
+		 }
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			if($rs['applydt_str'])
+			{
+				$sqstr.="  and applydt in (". $rs['applydt_str'].")";
+				
+			}
+			
+			
+			
+			if($rs['num_str'])
+			{
+				$sqstr.="  and num in (". $rs['num_str'].")";
+				
+			}
+			
+			
+			
+			if($rs['optnm_str'])
+			{	
+			   $sqstr.="  and manager in (". $rs['optnm_str'].")";  
+			}
+			
+			
+			if($rs['content_str'])
+			{
+			   	$sqstr.=" and content in (". $rs['content_str'].")";				
+			}
+			
+			
+			if($rs['moneys_str'])
+			{
+			   	$sqstr.=" and moneys in (". $rs['moneys_str'].")";				
+			}
+			
+			//exit($where);
+			
+		    echo $rs['cust_str'].' & '.$rs['applydt_str'].' & '.$rs['num_str'].' & '.$rs['optnm_str'].' & '.$rs['content_str']
+				.' & '.$rs['moneys_str'];
+			
+			exit("wtf");
+			
+			
+			
+			//调账
+			$sqt="select  ( select   IFNULL(sum(money),0) from xinhu_custfinaa  where type=0 and htid in ($sqstr) ) - ( select  IFNULL(sum(money),0) from xinhu_custfinaa  where type=1   and htid in ($sqstr) ) as dzjer ";  //exit($sqt);
+			
+			$arrt=$this->db->getall($sqt);	
+			
+			$dzjer=$arrt[0]['dzjer'];
+			
+			$rs['custname']="调账：".$dzjer;
+			
+			
+				
+			//已收
+			$sqys="select IFNULL(sum(money),0) as yishou from xinhu_custfina  where  type=0 and ispay=1  and htid in ($sqstr) ";
+			
+			$arys=$this->db->getall($sqys);
+			$yishou=$arys[0]['yishou'];			
+			$rs['signdt']="已收：".$yishou;
+			
+			
+			//未收
+			
+			$sqht="select IFNULL(sum(money),0) as allmny from xinhu_custract where type=0 and  comid='".$_SESSION['xinhu_companyid']."'  ";
+			
+			$sqht.=" and id in ($sqstr) ";  exit($sqht);
+			
+			$htars=$this->db->getall($sqht);
+			
+			$zong=$htars[0]['allmny'];
+			
+			$weishou=$zong  - $yishou;	// exit($weishou.' fuck');
+			$rs['explain']="未收:".$weishou;
+			
+			
+			
+			//开票			
+			$sqkai="select IFNULL(sum(money),0) as kaipiao  from xinhu_fininfom where num in ($sqstr)";
+			$arkp=$this->db->getall($sqkai); //exit($sqkai);
+			$kaipiao=$arkp[0]['kaipiao'];
+			
+			 $rs['startdt']="开票:".$kaipiao;
+			
+			
+			
+			//总数
+			$rs['num']="总共：".$rs['counts']." 份";
+			
+			
+			
+			$lv=0;
+			
+			//回款率
+			
+			 if($zong>0){ 
+			   $lv=($yishou/$zong)*100;			 
+			   $lv=number_format($lv,1);
+			 }
+			 
+			
+			
+			$rs['enddt']="回款率：".$lv."%";
+			
+			
+			
+			$rs['enddt'].="<script>
+			$('#htnum').html('".$rs['counts']."');
+			$('#htcnt').html('".$zong."');		
+			$('#tiao').html('".$dzjer."');			
+			$('#yish').html('".$yishou."');
+			$('#hklv').html('".$lv."%');
+			$('#weish').html('".$weishou."');
+			$('#kai').html('".$kaipiao."');
+			$('#weikai').html('".($yishou-$kaipiao)."');			
+			</script>";
+			
+			
+			
+			
+			// 开票
+			
+			
+			
+			// 未开票
+
+
+
+
+
+
+
+
+
+
+
+
+			if($rs['applydt_str'])
+			{
+				$sqstr.="  and applydt in (". $rs['applydt_str'].")";
+				
+			}
+			
+			
+			
+			if($rs['num_str'])
+			{
+				$sqstr.="  and num in (". $rs['num_str'].")";
+				
+			}
+			
+			
+			
+			if($rs['optnm_str'])
+			{	
+			   $sqstr.="  and manager in (". $rs['optnm_str'].")";  
+			}
+			
+			
+			if($rs['content_str'])
+			{
+			   	$sqstr.=" and content in (". $rs['content_str'].")";				
+			}
+			
+			
+			if($rs['moneys_str'])
+			{
+			   	$sqstr.=" and moneys in (". $rs['moneys_str'].")";				
+			}
+			
+			//exit($where);
+			
+		    echo $rs['cust_str'].' & '.$rs['applydt_str'].' & '.$rs['num_str'].' & '.$rs['optnm_str'].' & '.$rs['content_str']
+				.' & '.$rs['moneys_str'];
+			
+			exit("wtf");
+			
+			
+			
+			//调账
+			$sqt="select  ( select   IFNULL(sum(money),0) from xinhu_custfinaa  where type=0 and htid in ($sqstr) ) - ( select  IFNULL(sum(money),0) from xinhu_custfinaa  where type=1   and htid in ($sqstr) ) as dzjer ";  //exit($sqt);
+			
+			$arrt=$this->db->getall($sqt);	
+			
+			$dzjer=$arrt[0]['dzjer'];
+			
+			$rs['custname']="调账：".$dzjer;
+			
+			
+				
+			//已收
+			$sqys="select IFNULL(sum(money),0) as yishou from xinhu_custfina  where  type=0 and ispay=1  and htid in ($sqstr) ";
+			
+			$arys=$this->db->getall($sqys);
+			$yishou=$arys[0]['yishou'];			
+			$rs['signdt']="已收：".$yishou;
+			
+			
+			//未收
+			
+			$sqht="select IFNULL(sum(money),0) as allmny from xinhu_custract where type=0 and  comid='".$_SESSION['xinhu_companyid']."'  ";
+			
+			$sqht.=" and id in ($sqstr) ";  exit($sqht);
+			
+			$htars=$this->db->getall($sqht);
+			
+			$zong=$htars[0]['allmny'];
+			
+			$weishou=$zong  - $yishou;	// exit($weishou.' fuck');
+			$rs['explain']="未收:".$weishou;
+			
+			
+			
+			//开票			
+			$sqkai="select IFNULL(sum(money),0) as kaipiao  from xinhu_fininfom where num in ($sqstr)";
+			$arkp=$this->db->getall($sqkai); //exit($sqkai);
+			$kaipiao=$arkp[0]['kaipiao'];
+			
+			 $rs['startdt']="开票:".$kaipiao;
+			
+			
+			
+			//总数
+			$rs['num']="总共：".$rs['counts']." 份";
+			
+			
+			
+			$lv=0;
+			
+			//回款率
+			
+			 if($zong>0){ 
+			   $lv=($yishou/$zong)*100;			 
+			   $lv=number_format($lv,1);
+			 }
+			 
+			
+			
+			$rs['enddt']="回款率：".$lv."%";
+			
+			
+			
+			$rs['enddt'].="<script>
+			$('#htnum').html('".$rs['counts']."');
+			$('#htcnt').html('".$zong."');		
+			$('#tiao').html('".$dzjer."');			
+			$('#yish').html('".$yishou."');
+			$('#hklv').html('".$lv."%');
+			$('#weish').html('".$weishou."');
+			$('#kai').html('".$kaipiao."');
+			$('#weikai').html('".($yishou-$kaipiao)."');
+			
+			</script>";
+			
+			
+			
+			
+			// 开票
+			
+			
+			
+			// 未开票

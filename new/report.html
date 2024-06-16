@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <!-- import CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+
+<body>
+  <div id="app" v-loading="loading">
+    <div class="r-header">
+      <div class="r-header-text" id="header_title">合同成本报表</div>
+      <span onclick="window.history.go(-1);" class="r-position-left r-header-btn"><i
+          class="el-icon-arrow-left"></i></span>
+    </div>
+
+    <el-table :data="tableData" style="margin-top: 50px;width: 100%;height: 100%;;font-size: 16px;" stripe>
+      <el-table-column prop="custname" align="center" label="客户名称" min-width="180"></el-table-column>
+      <el-table-column prop="date" align="center" label="签订日期" width="130"></el-table-column>
+      <el-table-column prop="num" align="center" label="合同编号" min-width="180"></el-table-column>
+      <el-table-column label="收入" align="center">
+        <el-table-column fixed prop="contractAmount" align="center" label="合同金额" min-width="120"></el-table-column>
+        <el-table-column fixed prop="modulatedAccount" align="center" label="已调账" min-width="120"></el-table-column>
+      </el-table-column>
+      <el-table-column label="支出" align="center">
+        <el-table-column fixed prop="outsource" align="center" label="外协" min-width="120"></el-table-column>
+        <el-table-column fixed prop="cost" align="center" label="费用" min-width="120"></el-table-column>
+        <el-table-column fixed prop="tax" align="center" label="纳税" min-width="120"></el-table-column>
+      </el-table-column>
+      <el-table-column prop="grossProfit" align="center" label="毛利" min-width="120">
+        <template slot-scope="scope">
+          <a :href="'./detail.html?cid='+scope.row.id">{{scope.row.grossProfit}}</a>
+        </template>
+      </el-table-column>
+      <el-table-column prop="grossProfitRate" align="center" label="毛利率" min-width="120"></el-table-column>
+      <el-table-column prop="received" align="center" label="已收金额" min-width="120"></el-table-column>
+      <el-table-column prop="receivable" align="center" label="应收金额" min-width="120"></el-table-column>
+      <el-table-column prop="agent" align="center" label="客户经理" min-width="120"></el-table-column>
+    </el-table>
+  </div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<!--  axios  -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.bootcss.com/qs/6.5.1/qs.min.js"></script>
+<script>
+  const api = "https://ybz.ecouponsx.com/HomePage/listContractCost"
+  new Vue({
+    el: '#app',
+    data() {
+      return {
+        loading: false,
+        searchForm: {
+          userId: localStorage.getItem('httpzhongshuicicscmcom_adminid') || undefined,
+          customerName: undefined,
+          startTime: undefined,
+          endTime: undefined,
+          size: 10,
+          current: 1,
+          ascs: undefined,
+          descs: undefined
+        },
+        tableData: []
+      }
+    },
+    created() {
+      this.loadData();
+    },
+    methods: {
+      loadData() {
+        this.loading = true;
+        let url = api + "/?userId=" + this.searchForm.userId;
+        axios.get(api, {
+          params: this.searchForm
+        }, { header: { 'Content-Type': 'application/x-www-form-urlencoded' } }).then(res => {
+          this.loading = false;
+          if (res.status === 200 && res.data.code === '000000') {
+            this.tableData = res.data.data.data.records;
+          } else {
+            this.$message('加载数据异常');
+          }
+        }).catch(err => {
+          this.loading = false;
+          console.log(err);
+          this.$message('加载数据异常');
+        })
+      }
+    }
+  })
+</script>
+
+<style>
+  html {
+    height: 120%;
+    font-size: 10vw;
+  }
+
+  body {
+    font-size: 16px;
+    width: 120%;
+    height: 120%;
+    margin: 0 auto;
+  }
+
+  @media screen and (max-width: 320px) {
+    html {
+      font-size: 32px;
+    }
+
+    body {
+      min-width: 320px;
+    }
+  }
+
+  @media screen and (min-width: 800px) {
+    html {
+      font-size: 80px;
+    }
+
+    body {
+      max-width: 800px;
+    }
+  }
+
+  .r-header {
+    height: 50px;
+    line-height: 50px;
+    background-color: #1389D3;
+    overflow: hidden;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    z-index: 10;
+  }
+
+  .r-header-text {
+    text-align: center;
+  }
+
+  .r-header-btn {
+    display: block;
+    height: 50px;
+    width: 40px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 16px;
+  }
+
+  .r-position-left {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+  }
+</style>
+
+</html>

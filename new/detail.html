@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <!-- import CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+
+<body>
+  <div id="app" style="height: 100%;">
+    <div class="r-header">
+      <div class="r-header-text" onclick="location.reload()" id="header_title">合同成本报表</div>
+      <span onclick="window.history.go(-1);" class="r-position-left r-header-btn"><i
+          class="el-icon-arrow-left"></i></span>
+    </div>
+    <div class=""></div>
+    <iframe scaleEnabled="true" width="100%" height="100%" style="margin-top: 50px;"
+      :src="'http://zhongshui.cicscm.com/webmain/flow/page/rock_page_htdt.php?cid=' + cid"></iframe>
+  </div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data() {
+      return {
+        cid: ''
+      }
+    },
+    created() {
+      let name = 'cid'
+      this.cid = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.href) || [, ""])[1].replace(/\+/g, '%20')) || null
+    }
+  })
+</script>
+
+<style>
+  .r-header {
+    height: 50px;
+    line-height: 50px;
+    background-color: #1389D3;
+    overflow: hidden;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    z-index: 10;
+  }
+
+  .r-header-text {
+    text-align: center;
+  }
+
+  .r-header-btn {
+    display: block;
+    height: 50px;
+    width: 40px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 16px;
+  }
+
+  .r-position-left {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+  }
+
+
+  html {
+    height: 120%;
+    font-size: 10vw;
+  }
+
+  body {
+    font-size: 16px;
+    width: 120%;
+    height: 120%;
+    margin: 0 auto;
+  }
+
+  @media screen and (max-width: 320px) {
+    html {
+      font-size: 32px;
+    }
+
+    body {
+      min-width: 320px;
+    }
+  }
+
+  @media screen and (min-width: 800px) {
+    html {
+      font-size: 80px;
+    }
+
+    body {
+      max-width: 800px;
+    }
+  }
+</style>
+
+</html>

@@ -1,0 +1,17 @@
+[ERROR SQL]
+SELECT id as value,feename as name,id FROM xinhu_feetype WHERE ((`feename` like '%%') or (`id`=0) ) ORDER BY `name`
+
+[Reason]
+mysqliError:Table 'yibenzhang.xinhu_feetype' doesn't exist
+
+[URL]
+http://127.0.0.3/?a=lu&m=input&d=flow&num=custfee&mid=0&callback=opegs1576058587105_870
+
+[IP]
+127.0.0.1
+
+[datetime]
+2019-12-11 18:06:47
+
+[Browser]
+Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.90 Safari/537.36

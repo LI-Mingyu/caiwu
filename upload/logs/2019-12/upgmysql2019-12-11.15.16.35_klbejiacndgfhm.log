@@ -1,0 +1,15 @@
+[2019-12-11 15:16:35]:http://127.0.0.3/index.php?a=shengjianss&m=upgrade&d=system&ajaxbool=true&rnd=138186
+CREATE TABLE `xinhu_finzhang` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `comid` smallint(6) DEFAULT '0' COMMENT '对应单位id',
+  `name` varchar(100) DEFAULT NULL COMMENT '账套名称',
+  `startdt` date DEFAULT NULL COMMENT '开始日期',
+  `enddt` date DEFAULT NULL COMMENT '截止日期',
+  `status` tinyint(1) DEFAULT '1' COMMENT '状态',
+  `sort` int(11) DEFAULT '0' COMMENT '排序号',
+  `optid` int(11) DEFAULT '0' COMMENT '创建人',
+  `optname` varchar(50) DEFAULT NULL COMMENT '创建人',
+  `optdt` datetime DEFAULT NULL COMMENT '操作时间',
+  `explain` varchar(500) DEFAULT NULL COMMENT '说明',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8

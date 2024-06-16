@@ -1,0 +1,33 @@
+[ERROR SQL]
+SELECT count(1) FROM xinhu_fininfom WHERE 1=1   and type=5  and (( `uid` in(select `id` from `xinhu_admin` where instr(`deptpath`,'[150]')>0  and `deptid`!=150) ) or ( `managerid` in(select `id` from `xinhu_admin` where instr(`deptpath`,'[150]')>0  and `deptid`!=150) )) and `comid` in(92)
+
+[Reason]
+mysqliError:Unknown column 'managerid' in 'IN/ALL/ANY subquery'
+
+[URL]
+http://zhongshui.cicscm.com/index.php?a=publicstore&m=mode_finkai|input&d=flow&modeid=65&ajaxbool=true&rnd=534796&pnum=all
+
+[POST]
+[tablename_abc]:ar0wra0wrp0wwz0az0pz0og0wra0ap0or0mp0op02
+[defaultorder]:
+[keywhere]:
+[where]:
+[sort]:
+[dir]:
+[loadci]:3
+[storebeforeaction]:storebeforeshow
+[storeafteraction]:storeaftershow
+[modenum]:finkai
+[start]:0
+[page]:1
+[limit]:15
+[atype]:all
+
+[IP]
+113.118.36.34
+
+[datetime]
+2020-05-09 14:53:57
+
+[Browser]
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Safari/605.1.15

@@ -1,0 +1,33 @@
+[ERROR SQL]
+SELECT fpname FROM xinhu_feelv WHERE id=增值税专用发票 LIMIT 1
+
+[Reason]
+mysqliError:Unknown column '增值税专用发票' in 'where clause'
+
+[URL]
+http://127.0.0.3/index.php?a=publicstore&m=mode_finkai|input&d=flow&modeid=65&ajaxbool=true&rnd=306930&pnum=all
+
+[POST]
+[tablename_abc]:ud0zdu0zdf0zzi0ui0fi0va0zdu0uf0vd0tf0vf08
+[defaultorder]:
+[keywhere]:
+[where]:
+[sort]:
+[dir]:
+[loadci]:1
+[storebeforeaction]:storebeforeshow
+[storeafteraction]:storeaftershow
+[modenum]:finkai
+[start]:0
+[page]:1
+[limit]:15
+[atype]:all
+
+[IP]
+127.0.0.1
+
+[datetime]
+2020-01-08 09:38:39
+
+[Browser]
+Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.90 Safari/537.36

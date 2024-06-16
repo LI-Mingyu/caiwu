@@ -1,0 +1,33 @@
+[ERROR SQL]
+select * from xinhu_custract where 1=1    and 1=1 and ( `uid` in(select `id` from `xinhu_admin` where 1=1) )   and uid in(select `id` from `xinhu_admin` where 1=1 and ()) and `comid` in(1,0)      order by `optdt` desc    limit 0,15
+
+[Reason]
+mysqliError:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')) and `comid` in(1,0)      order by `optdt` desc    limit 0,15' at line 1
+
+[URL]
+http://dl.ybz58.com/index.php?a=publicstore&m=mode_custract|input&d=flow&modeid=35&ajaxbool=true&rnd=879952&pnum=
+
+[POST]
+[tablename_abc]:at0db0az0bgg0bww0pg0po0bwo0at0db0ab0da03
+[defaultorder]:
+[keywhere]:
+[where]:
+[sort]:
+[dir]:
+[loadci]:2
+[storebeforeaction]:storebeforeshow
+[storeafteraction]:storeaftershow
+[modenum]:custract
+[start]:0
+[page]:1
+[limit]:15
+[atype]:all
+
+[IP]
+113.118.37.64
+
+[datetime]
+2020-04-29 01:35:09
+
+[Browser]
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36

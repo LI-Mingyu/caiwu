@@ -1,0 +1,33 @@
+[ERROR SQL]
+SELECT acc_name FROM xinhu_account WHERE id= LIMIT 1
+
+[Reason]
+mysqliError:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 1' at line 1
+
+[URL]
+http://127.0.0.3/index.php?a=publicstore&m=mode_custfina|input&d=flow&modeid=36&ajaxbool=true&rnd=230070&pnum=
+
+[POST]
+[tablename_abc]:zp0mr0zo0rww0rll0dr0pl0rrw0pz0rlp0op0mz01
+[defaultorder]:
+[keywhere]:
+[where]:
+[sort]:
+[dir]:
+[loadci]:1
+[storebeforeaction]:storebeforeshow
+[storeafteraction]:storeaftershow
+[modenum]:custfina
+[start]:0
+[page]:1
+[limit]:15
+[atype]:myskd
+
+[IP]
+127.0.0.1
+
+[datetime]
+2019-12-20 15:29:04
+
+[Browser]
+Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.90 Safari/537.36

@@ -1,0 +1,2 @@
+<?php
+return 'hh0tw0te0wt0hh0tw0tn0kxt0to0th0tn0kxt0ho0nt0tk0wo0to0kmm0kxx0kxh0to0kxo0ox0kxe0ht0kxn0kxa0em0hh0th0no0ex0ho0tw0nn0kxe0hh0ex0te0kmx0to0kxn0ne0et06';

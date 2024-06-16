@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>VUE</title>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	
+</head>
+
+<body>
+
+<div id="app">
+<!-- {{message}}{{name}} -->
+	
+	{{a}}
+</div>
+	
+	
+<div id="app-2">
+  <span v-bind:title="message">
+    鼠标悬停几秒钟查看此处动态绑定的提示信息！
+  </span>
+</div>	
+
+	
+<div id="app-3">	
+<p v-if="seen">现在你看到我了</p>
+	
+</div>
+	
+	
+<script>
+	
+     var data ={a:1};
+	
+	 var vm=new Vue({
+		 el:"#app",
+		/* data:{
+			 //message:"Hello vue!FUck vue!",
+			// name:"mxther fucker"
+		 } */
+		 
+		 data: data
+		 
+	 });
+	
+   vm.$watch('a',function(newVal,oldVal){
+		
+		console.log(newVal,oldVal);
+		
+	})
+	
+	
+	data.a="fuck...."
+	
+	vm.a="mfuck2"
+	
+	
+	document.write(vm.$data===data);
+	
+	document.write("<br>");
+	
+	document.write(vm.$el===document.getElementById("app"));
+	
+	
+	var vm2=new Vue({
+		
+		el:"#app-2",
+		data:{
+		  message:'页面加载与' + new Date().toLocaleDateString()	
+			
+		}
+		
+	});
+	
+	
+	var vm3=new Vue({
+		
+		el: '#app-3',
+	    data: {
+		seen: true
+			
+	   }		
+	});
+
+	
+	
+</script>	
+	
+	
+	
+</body>
+</html>

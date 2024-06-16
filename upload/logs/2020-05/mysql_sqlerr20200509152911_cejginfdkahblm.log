@@ -1,0 +1,33 @@
+[ERROR SQL]
+select a.*,b.`uname` as base_name,b.`udeptname` as base_deptname,b.`sericnum`,b.`nowcheckname` from `xinhu_fininfom` a left join `xinhu_flow_bill` b on a.`id`=b.`mid` and b.`table`='fininfom' where 1=1   and type=0  and (( a.`uid` in(select `id` from `xinhu_admin` where instr(`deptpath`,'[148]')>0  and `deptid`!=148) ) or ( a.`managerid` in(select `id` from `xinhu_admin` where instr(`deptpath`,'[148]')>0  and `deptid`!=148) )) and a.`comid` in(92)      order by a.`optdt` desc    limit 0,15
+
+[Reason]
+mysqliError:Unknown column 'a.managerid' in 'IN/ALL/ANY subquery'
+
+[URL]
+http://zhongshui.cicscm.com/index.php?a=publicstore&m=mode_finfybx|input&d=flow&modeid=11&ajaxbool=true&rnd=407617&pnum=all
+
+[POST]
+[tablename_abc]:ha0tah0tak0ttc0hc0kc0fj0tah0hk0fa0ik0fk011
+[defaultorder]:
+[keywhere]:
+[where]:
+[sort]:
+[dir]:
+[loadci]:6
+[storebeforeaction]:storebeforeshow
+[storeafteraction]:storeaftershow
+[modenum]:finfybx
+[start]:0
+[page]:1
+[limit]:15
+[atype]:all
+
+[IP]
+113.118.36.34
+
+[datetime]
+2020-05-09 15:29:11
+
+[Browser]
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Safari/605.1.15

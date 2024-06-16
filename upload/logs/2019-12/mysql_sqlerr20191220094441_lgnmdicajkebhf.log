@@ -1,0 +1,48 @@
+[ERROR SQL]
+select 
+( c.money+( (select sum(money)  from xinhu_custfinaa where htid='' and type=0) - (select sum(money)  from xinhu_custfinaa where htid='' and type=1) ) )
+
+- (select IFNULL(sum(money),0)  from xinhu_custfina  where  type=0 and ispay=1 and htid=)
+
+as allmoney from   xinhu_custract c  where c.id=
+
+[Reason]
+mysqliError:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')
+
+as allmoney from   xinhu_custract c  where c.id=' at line 4
+
+[URL]
+http://127.0.0.3/index.php?a=save&m=mode_custfina|input&d=flow&ajaxbool=true&rnd=553432
+
+[POST]
+[id]:0
+[htid]:2
+[htnum]:2019-12-002
+[custid]:1
+[custname]:梧桐山饮用水
+[dt]:2019-12-20
+[accid]:1
+[type]:0
+[money]:1100
+[ispay]:1
+[paydt]:2019-12-20 09:44:20
+[paymtd]:1
+[optname]:管理员
+[optnameid]:1
+[depart]:壹本账科技公司
+[departid]:2
+[paytype]:0
+[qishu]:第三期
+[explain]:GGGGGGGGGGGG
+[fileid]:
+[sysmodeid]:36
+[sysmodenum]:custfina
+
+[IP]
+127.0.0.1
+
+[datetime]
+2019-12-20 09:44:41
+
+[Browser]
+Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.90 Safari/537.36
