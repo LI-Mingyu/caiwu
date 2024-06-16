@@ -1,1 +1,0 @@
-<div style="font-size:30px;padding:100px">中投的企业微信模块，如需要可以聯繫開發者<a href="http://ds.cicqeg.com/"  target="_blank" style="font-size:30px">【看看】</a></div>

@@ -1,2 +1,0 @@
-[2019-12-11 15:17:09]:http://127.0.0.3/index.php?a=shengjianss&m=upgrade&d=system&ajaxbool=true&rnd=856212
-alter table `xinhu_official` MODIFY `type` tinyint(1) DEFAULT '0' COMMENT '0收文单,1发文单'
